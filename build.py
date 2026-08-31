@@ -157,6 +157,7 @@ def build():
         shutil.rmtree(DOCS)
     DOCS.mkdir(parents=True)
     (DOCS / "posts").mkdir()
+    (DOCS / ".nojekyll").touch()  # GitHub PagesにJekyll処理をさせず、生成済みHTMLをそのまま配信させる
     if STATIC.exists():
         shutil.copytree(STATIC, DOCS / "static")
 
