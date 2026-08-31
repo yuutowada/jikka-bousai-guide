@@ -4,7 +4,7 @@
 記事自動生成スクリプト
 
 ニッチ「離れて暮らす親のための防災ポータブル電源」に沿った新しい記事テーマを選び、
-Claude API(claude-opus-5)で本文を生成し、ARTICLE_TEMPLATE.md の構成に沿った
+Claude API(claude-sonnet-5)で本文を生成し、ARTICLE_TEMPLATE.md の構成に沿った
 Markdownファイルとして content/posts/ に追加する。
 
 生成後、簡易的な品質チェック(quality_checks.py)を行い、チェックを通過しなければ
@@ -32,7 +32,7 @@ POSTS_DIR = ROOT / "content" / "posts"
 REVIEW_DIR = ROOT / "content" / "review-needed"
 TEMPLATE_PATH = ROOT / "ARTICLE_TEMPLATE.md"
 
-MODEL = "claude-opus-5"
+MODEL = "claude-sonnet-5"
 MAX_ATTEMPTS = 3
 
 SITE_CONTEXT = """\
@@ -80,7 +80,7 @@ def build_prompt(topic, feedback=None):
 
 
 def call_claude(prompt):
-    """Claude API(claude-opus-5)を1回呼び出し、テキストを返す。"""
+    """Claude API(claude-sonnet-5)を1回呼び出し、テキストを返す。"""
     import anthropic
 
     client = anthropic.Anthropic()

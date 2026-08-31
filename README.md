@@ -110,7 +110,7 @@ pushすると数十秒〜数分でGitHub Pages側にも反映されます。
 
 ## 記事の自動生成・自動公開(フェーズ3)
 
-`automation/generate_article.py` が、Claude API(`claude-opus-5`)を使って記事を1本自動生成し、`content/posts/` に追加します。`.github/workflows/weekly-article.yml` により、**毎週月曜 06:00(JST)に自動実行 → ビルド → コミット・push** まで行われます。
+`automation/generate_article.py` が、Claude API(`claude-sonnet-5`)を使って記事を1本自動生成し、`content/posts/` に追加します。`.github/workflows/weekly-article.yml` により、**毎週月曜 06:00(JST)に自動実行 → ビルド → コミット・push** まで行われます。
 
 ### 仕組み
 
@@ -164,7 +164,7 @@ python3 build.py   # 生成された記事をサイトに反映
 
 ### コストについて
 
-`claude-opus-5` は $5.00 / $25.00(入力 / 出力 100万トークンあたり)の料金です。1回の記事生成(最大3回まで再試行)にかかるトークン数の目安から、1回の週次実行あたり数十円程度のAPI利用料が発生します。毎週自動実行されるため、月間のAnthropic APIの請求額は定期的に確認することをおすすめします。
+`claude-sonnet-5` は $2.00 / $10.00(入力 / 出力 100万トークンあたり)の料金です(コスト効率を優先し、`claude-opus-5` から変更)。1回の記事生成(最大3回まで再試行)にかかるトークン数の目安から、1回の週次実行あたり数円〜十数円程度のAPI利用料が発生します。毎週自動実行されるため、月間のAnthropic APIの請求額は定期的に確認することをおすすめします。生成記事の品質に問題が見られる場合は `automation/generate_article.py` の `MODEL` を `claude-opus-5` に戻すことも検討してください。
 
 ## Amazonアソシエイト承認後にやること
 
