@@ -36,7 +36,7 @@ slug: portable-power-basics
 
 ボタン数が少なく、画面表示も最小限。停電時にとっさに使う場面を想定した、初めての防災グッズとして選びやすいタイプです。
 
-{{affiliate:小型ポータブル電源(容量300Wh前後)|ASIN_PLACEHOLDER_01}}
+{{affiliate:小型ポータブル電源(容量300Wh前後)|https://link.amazon/B03YnBb0i}}
 
 ### タイプB:長時間の停電に備える大容量モデル
 

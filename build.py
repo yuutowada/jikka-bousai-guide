@@ -90,14 +90,26 @@ def md_to_html(body):
         if m_aff:
             flush_paragraph()
             flush_list()
-            product, placeholder = m_aff.group(1), m_aff.group(2)
-            html_parts.append(
-                '<div class="affiliate-placeholder">\n'
-                '  <p class="affiliate-placeholder__label">🔧 アフィリエイトリンク設置予定</p>\n'
-                f'  <p class="affiliate-placeholder__product">{product}</p>\n'
-                f'  <p class="affiliate-placeholder__note">(Amazon未承認のため準備中 / 差込ID: {placeholder})</p>\n'
-                "</div>"
-            )
+            product, value = m_aff.group(1), m_aff.group(2)
+            if value.startswith("http://") or value.startswith("https://"):
+                # 実リンクが差し込まれている商品:実際に遷移するボタンとして表示する
+                html_parts.append(
+                    '<div class="affiliate-link">\n'
+                    f'  <p class="affiliate-link__product">{product}</p>\n'
+                    f'  <a class="affiliate-link__button" href="{value}" '
+                    'target="_blank" rel="nofollow sponsored noopener">Amazonで見る →</a>\n'
+                    '  <p class="affiliate-link__disclosure">[PR] Amazon.co.jpの商品ページに移動します</p>\n'
+                    "</div>"
+                )
+            else:
+                # まだリンク未設置の商品:「設置予定」のプレースホルダー表示のまま
+                html_parts.append(
+                    '<div class="affiliate-placeholder">\n'
+                    '  <p class="affiliate-placeholder__label">🔧 アフィリエイトリンク設置予定</p>\n'
+                    f'  <p class="affiliate-placeholder__product">{product}</p>\n'
+                    f'  <p class="affiliate-placeholder__note">(Amazon未承認のため準備中 / 差込ID: {value})</p>\n'
+                    "</div>"
+                )
             continue
 
         if line.startswith("### "):

@@ -37,7 +37,7 @@ topic_id: earthquake-power-outage
 
 スマートフォンの充電や小型ライトの使用が中心の家庭向けです。本体が軽く、コンセントのように使える機種が多いため、初めてポータブル電源を持つ親世帯にも取り入れやすいタイプです。
 
-{{affiliate:小型ポータブル電源|ASIN_PLACEHOLDER}}
+{{affiliate:小型ポータブル電源|https://link.amazon/B03YnBb0i}}
 
 ### タイプB:見守りカメラや複数機器に対応できる中容量モデル
 

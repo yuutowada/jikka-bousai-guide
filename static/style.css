@@ -109,6 +109,27 @@ a:hover { color: var(--color-primary); }
 .affiliate-placeholder__product { margin: 0 0 4px; font-size: 1.05rem; }
 .affiliate-placeholder__note { margin: 0; font-size: 0.85rem; color: var(--color-muted); }
 
+.affiliate-link {
+  margin: 18px 0;
+  padding: 16px 18px;
+  border: 1px solid var(--color-border);
+  background: var(--color-card-bg);
+  border-radius: 8px;
+}
+.affiliate-link__product { margin: 0 0 10px; font-weight: 700; font-size: 1.02rem; }
+.affiliate-link__button {
+  display: inline-block;
+  padding: 10px 20px;
+  background: var(--color-primary);
+  color: #fff;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 0.95rem;
+}
+.affiliate-link__button:hover { background: var(--color-primary-dark); color: #fff; }
+.affiliate-link__disclosure { margin: 8px 0 0; font-size: 0.78rem; color: var(--color-muted); }
+
 .disclaimer {
   margin-top: 40px;
   padding: 14px 16px;

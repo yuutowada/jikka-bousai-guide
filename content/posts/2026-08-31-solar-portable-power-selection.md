@@ -43,7 +43,9 @@ topic_id: solar-panel-combo
 
 あらかじめケーブルや接続方法が最適化された状態で販売されているセット商品です。単品で組み合わせるよりも接続の手間が少なく、初期設定を子世代が一度行っておけば、その後は親がパネルを日なたに置くだけで充電できる状態にしやすいのが特徴です。
 
-{{affiliate:ソーラーパネル付きポータブル電源セット|ASIN_PLACEHOLDER}}
+{{affiliate:ソーラーパネル付きポータブル電源セット①|https://link.amazon/A03VcAaNg}}
+
+{{affiliate:ソーラーパネル付きポータブル電源セット②|https://link.amazon/B0iu4NYAm}}
 
 ### タイプC:大容量・長時間対応モデル
 
