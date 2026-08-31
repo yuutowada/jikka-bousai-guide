@@ -102,12 +102,16 @@ def md_to_html(body):
                     "</div>"
                 )
             else:
-                # まだリンク未設置の商品:「設置予定」のプレースホルダー表示のまま
+                # まだリンク未設置の商品:「設置予定」のプレースホルダー表示のまま。
+                # 差込ID(value)は開発用の内部情報であり読者向け表示には出さず、
+                # HTMLコメントとしてソース上にのみ残す(view-sourceでのみ確認可能)。
+                safe_value = value.replace("--", "—")
                 html_parts.append(
                     '<div class="affiliate-placeholder">\n'
                     '  <p class="affiliate-placeholder__label">🔧 アフィリエイトリンク設置予定</p>\n'
                     f'  <p class="affiliate-placeholder__product">{product}</p>\n'
-                    f'  <p class="affiliate-placeholder__note">(Amazon未承認のため準備中 / 差込ID: {value})</p>\n'
+                    '  <p class="affiliate-placeholder__note">(リンク設置準備中)</p>\n'
+                    f"  <!-- 差込ID: {safe_value} -->\n"
                     "</div>"
                 )
             continue
