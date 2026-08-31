@@ -6,6 +6,7 @@
 (generate_article.py 側の制御)。あくまで簡易的な文字列チェックであり、
 最終的な内容の妥当性を保証するものではない点に注意。
 """
+import re
 
 # 効果・安全性を断定・保証する表現(このニッチはYMYL寄りのため特に注意)
 DEFAULT_FORBIDDEN_PHRASES = [
@@ -34,7 +35,13 @@ DEFAULT_MEDICAL_KEYWORDS = [
     "透析",
 ]
 
-DEFAULT_REQUIRED_CAUTION_SNIPPET = "要確認"
+# 医療機器への言及に添えるべき注記のパターン。
+# 「要確認」という一語だけを厳密一致で探すと、「ご確認ください」「事前にご確認ください」
+# 「確認したうえで」のような自然な言い回しを取りこぼして誤検知するため、
+# 「メーカー/医療機関」と「確認」が近く(同じ文内程度)に出てくるかどうかで判定する。
+CAUTION_PATTERN = re.compile(
+    r"(メーカー|医療機関)[^。\n]{0,40}確認|確認[^。\n]{0,40}(メーカー|医療機関)"
+)
 
 REQUIRED_HEADINGS = ["この記事でわかること", "まとめ"]
 
@@ -43,12 +50,10 @@ def run_quality_checks(
     body,
     forbidden_phrases=None,
     medical_keywords=None,
-    required_caution_snippet=None,
 ):
     """本文(Markdown)を検査し、(合格したか, 問題点のリスト) を返す。"""
     forbidden_phrases = forbidden_phrases or DEFAULT_FORBIDDEN_PHRASES
     medical_keywords = medical_keywords or DEFAULT_MEDICAL_KEYWORDS
-    required_caution_snippet = required_caution_snippet or DEFAULT_REQUIRED_CAUTION_SNIPPET
 
     problems = []
 
@@ -57,12 +62,12 @@ def run_quality_checks(
     if found_forbidden:
         problems.append("断定的な効能表現が含まれています: " + "、".join(found_forbidden))
 
-    # 2. 医療機器に言及している場合、「要確認」等の注記があるかチェック
+    # 2. 医療機器に言及している場合、「メーカー/医療機関に確認」等の注記が近くにあるかチェック
     mentions_medical = any(kw in body for kw in medical_keywords)
-    if mentions_medical and required_caution_snippet not in body:
+    if mentions_medical and not CAUTION_PATTERN.search(body):
         problems.append(
             "医療機器(在宅酸素・人工呼吸器等)への言及がありますが、"
-            "「メーカーに要確認」等の注記が見当たりません"
+            "「メーカーまたは医療機関にご確認ください」等の注記が見当たりません"
         )
 
     # 3. アフィリエイトプレースホルダーが最低1つあるか
