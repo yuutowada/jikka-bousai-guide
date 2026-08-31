@@ -37,7 +37,7 @@ topic_id: smartphone-lifeline
 
 普段から持ち歩けるサイズで、スマホの充電を数回分カバーできるタイプです。操作もシンプルで、親が一人で使う場合にも扱いやすいのが特徴です。停電時だけでなく、日常のお出かけ用としても活用できます。
 
-{{affiliate:大容量モバイルバッテリー|ASIN_PLACEHOLDER}}
+{{affiliate:大容量モバイルバッテリー|https://link.amazon/B03TFNzRb}}
 
 ### タイプB:照明やラジオも使えるポータブル電源
 
